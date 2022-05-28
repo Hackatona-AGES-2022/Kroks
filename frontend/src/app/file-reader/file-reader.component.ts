@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-file-reader',
@@ -9,7 +10,7 @@ export class FileReaderComponent implements OnInit {
   @Input('fileType')
   fileType!: string;
 
-  constructor() {}
+  constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {}
 
@@ -20,8 +21,10 @@ export class FileReaderComponent implements OnInit {
 
     const fileReader = new FileReader();
 
-    fileReader.onload = function (fileLoadEvent) {
-      var srcData = fileLoadEvent.target?.result;
+    fileReader.onload = (fileLoadEvent) => {
+      var source = fileLoadEvent.target?.result;
+      console.log(source);
+      this.httpService.sendImage(source).subscribe();
     };
     fileReader.readAsDataURL(file);
   }
