@@ -26,7 +26,7 @@ export class HttpService {
 
     return this.http.post(this.url, image, {
       headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': '023a76ba2895452f8bef3d5fe501d662',
+        'Ocp-Apim-Subscription-Key': '',
       }),
     });
   }
