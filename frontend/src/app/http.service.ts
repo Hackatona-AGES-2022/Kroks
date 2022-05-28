@@ -17,7 +17,15 @@ export class HttpService {
     'Content-Type': 'application/octet-stream',
   });
 
-  public sendImage(image: File) {
+  public async sendImage(image: File) {
+    const request = {
+      image: image,
+      content_type: image.type,
+      location: await this.geoService.getCurrentLocation(),
+    };
+
+    console.log(request);
+
     return this.http.post(this.url + '/image', image, {
       headers: this.headers,
     });

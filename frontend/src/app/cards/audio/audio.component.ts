@@ -19,6 +19,7 @@ export class AudioComponent implements OnInit {
   ngOnInit(): void {
     this.recognition.interimResults = true;
     this.recognition.lang = 'pt-BR';
+    this.recognition;
 
     this.recognition.addEventListener('result', (e: any) => {
       const transcript = Array.from(e.results)
@@ -74,6 +75,6 @@ export class AudioComponent implements OnInit {
   handleFile(event: any) {
     const file: File = event.target.files[0];
     console.log(file.type);
-    this.http.sendAudio(file);
+    this.http.sendAudio(file).subscribe((d) => console.log(d));
   }
 }

@@ -6,14 +6,16 @@ import { Injectable } from '@angular/core';
 export class GeoService {
   constructor() {}
 
-  getCurrentLocation(): string {
+  async getCurrentLocation(): Promise<string> {
     let str = '';
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        str += position.coords.latitude + 'lat';
-        str += position.coords.longitude + 'long';
-      });
+      navigator.geolocation.getCurrentPosition(
+        async ({ coords: { latitude, longitude } }) => {
+          str += latitude;
+          str += ' ' + longitude;
+        }
+      );
     }
 
     return str;
