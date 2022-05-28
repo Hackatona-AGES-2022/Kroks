@@ -18,8 +18,13 @@ export class HttpService {
   });
 
   public sendImage(image: File) {
-    return this.http.post(this.url + '/image', image, {
-      headers: this.headers,
+    const header = new HttpHeaders({
+      'Content-Type': 'application/octet-stream',
+      'content-type-aux': image.type,
+      'region': 'Brazil'
+    })
+    return this.http.post(this.url + '/audio-image', image, {
+      headers: header,
     });
   }
 

@@ -48,5 +48,7 @@
     ></app-button>
   </div>
 </div>
-
+<audio class="back-audio" *ngIf="showAudio" autoplay controls>
+  <source type="audio" src="{{ audio }}" type="audio/mpeg">
+</audio>
 <app-response *ngIf="response != ''" response="{{ response }}"></app-response>
