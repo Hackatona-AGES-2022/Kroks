@@ -18,14 +18,6 @@ export class HttpService {
   });
 
   public sendImage(image: File) {
-    const request = {
-      image: image,
-      content_type: image.type,
-      location: this.geoService.getCurrentLocation(),
-    };
-
-    console.log(request);
-
     return this.http.post(this.url + '/image', image, {
       headers: this.headers,
     });
