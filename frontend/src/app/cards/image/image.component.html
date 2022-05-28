@@ -1,0 +1,78 @@
+<div>
+  <h2>Transcrição de Imagem</h2>
+</div>
+<div *ngIf="!isTakingPhoto" class="row">
+  <div class="col">
+    <div class="mb-3 hiden">
+      <input
+        class="form-control"
+        type="file"
+        accept="image/png,image/jpg,image/jpeg"
+        id="file-input"
+        (change)="handleFile($event)"
+      />
+    </div>
+    <div class="mb-3">
+      <app-button
+      *ngIf="!sendImage"
+        title="Enviar foto"
+        type="btn-secondary btn-upload shadow"
+        icon="bi-file-earmark-image"
+        alt="Envio de foto"
+        (click)="handleClick()"
+      ></app-button>
+      
+      <button *ngIf="sendImage" class="btn btn-warning" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Carregando...
+      </button>
+    </div>
+  </div>
+  <div class="col">
+    <app-button
+      
+      title="Tirar foto"
+      type="btn-secondary btn-realtime shadow"
+      icon="bi-camera"
+      alt="Função de captura de foto através da câmera do dispositivo"
+      (click)="checkPermissions()"
+    ></app-button>
+  </div>
+</div>
+
+<div *ngIf="isTakingPhoto" class="webcam">
+  <webcam
+    [width]="350"
+    [style]="{ position: 'relative', left: '15%', alignSelf: 'center' }"
+    [trigger]="$trigger"
+    (imageCapture)="snapshot($event)"
+  ></webcam>
+  <div class="webcam-actions">
+    <app-button
+    *ngIf="!sendBigImage"
+      title="Capturar imagem"
+      type="btn-primary"
+      (click)="captureImage()"
+      alt="Captura de foto instantânea"
+    ></app-button>
+    <button *ngIf="sendBigImage" class="btn btn-primary" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Carregando...
+    </button>
+    <app-button
+      title="Fechar"
+      (click)="closeWebcam()"
+      type="btn-link"
+      alt="Fechar funcionalidade e retornar ao menu de seleção de imagens"
+    ></app-button>
+  </div>
+</div>
+
+<div *ngIf="hasError" class="alert alert-warning" role="alert">
+  {{errorMessage}}
+</div>
+
+<audio class="back-audio" *ngIf="showAudio" autoplay controls>
+  <source type="audio" src="{{ audio }}" type="audio/mpeg">
+</audio>
+<app-response *ngIf="response != ''" response="{{ response }}"></app-response>

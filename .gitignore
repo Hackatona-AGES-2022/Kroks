@@ -296,3 +296,8 @@ cython_debug/
 
 *.wav
 *.mp3
+
+node_modules/
+dist/
+.vscode/
+.angular/
