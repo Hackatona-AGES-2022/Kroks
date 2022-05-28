@@ -11,6 +11,8 @@ import { TranscribeChoiceComponent } from './cards/transcribe-choice/transcribe-
 import { AudioComponent } from './cards/audio/audio.component';
 import { ImageComponent } from './cards/image/image.component';
 import { ButtonComponent } from './components/button/button.component';
+import { ResponseComponent } from './response/response.component';
+import { WebcamModule } from 'ngx-webcam';
 
 @NgModule({
   declarations: [
@@ -22,8 +24,9 @@ import { ButtonComponent } from './components/button/button.component';
     TranscribeChoiceComponent,
     AudioComponent,
     ImageComponent,
+    ResponseComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, WebcamModule],
   providers: [],
   bootstrap: [AppComponent],
 })
