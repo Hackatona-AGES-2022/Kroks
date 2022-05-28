@@ -1,33 +1,31 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { GeoService } from './services/geo.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpService {
-  private url =
-    'https://pucrs.cognitiveservices.azure.com/vision/v3.1/describe';
+  // private url =
+  //   'https://pucrs.cognitiveservices.azure.com/vision/v3.1/describe';
 
-  constructor(private http: HttpClient) {}
+  private url = 'http://localhost:8000';
 
-  public sendImage(image: any) {
-    let params = {
-      // Choose categories to analyze - see the documentation for reference
-      visualFeatures: 'Categories,Tags,Description,Faces,ImageType,Color,Adult',
-      details: '',
-      language: 'en',
-    };
+  constructor(private http: HttpClient, private geoService: GeoService) {}
 
-    const formData = new FormData();
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/octet-stream',
+  });
 
-    formData.append('imageFile', image);
+  public sendImage(image: File) {
+    return this.http.post(this.url + '/image', image, {
+      headers: this.headers,
+    });
+  }
 
-    console.log(image);
-
-    return this.http.post(this.url, image, {
-      headers: new HttpHeaders({
-        'Ocp-Apim-Subscription-Key': '',
-      }),
+  public sendAudio(audio: File) {
+    return this.http.post(this.url + '/audio', audio, {
+      headers: this.headers,
     });
   }
 }

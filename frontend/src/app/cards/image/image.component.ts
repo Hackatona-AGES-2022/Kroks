@@ -20,8 +20,7 @@ export class ImageComponent implements OnInit {
     
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   get $trigger(): Observable<void> {
     return this.trigger.asObservable();
