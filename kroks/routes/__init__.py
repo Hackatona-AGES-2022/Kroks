@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 
 from . import images
@@ -19,5 +20,6 @@ def create_app():
     app.include_router(images.router)
     app.include_router(audio.router)
     app.include_router(statistics.router)
+    app.mount("/static", StaticFiles(directory="static"), name="static")
     
     return app

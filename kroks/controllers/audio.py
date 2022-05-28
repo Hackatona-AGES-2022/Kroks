@@ -2,8 +2,12 @@ import json
 import requests
 from urllib.request import Request 
 from urllib import request 
+import random
+import pathlib
 
 from ..settings import SETTINGS
+
+mp3_root = pathlib.Path(__file__).parents[2] /'static'/'mp3'
 
 
 async def generate_text_from_speech(file: bytes, region: str):
@@ -30,7 +34,12 @@ async def generate_speech_from_text(text: str, region: str):
             "Content-Type": "application/ssml+xml"
         }
     )
+    open('frit.mp3', 'wb').write(res.content)
 
-    print(res.json())
+    return res.content
 
-    return res.json()
+async def save_audio(audio):
+    file_name = f'file_{random.random()}.mp3'
+    with open(mp3_root/file_name, 'wb') as f:
+        f.write(audio)
+    return file_name
