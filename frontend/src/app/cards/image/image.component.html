@@ -9,9 +9,9 @@
     </div>
 </div>
 
-<div *ngIf="isTakingPhoto">
+<div>
   <webcam [width]="300" [trigger]="$trigger" (imageCapture)="snapshot($event)"></webcam>
-  <app-button title="Capturar imagem" type="btn-primary" (click) = "captureImage()"></app-button>
+  <app-button title="Capturar imagem" type="btn-primary"  (click) = "captureImage()"></app-button>
 </div>
 
 
