@@ -12,7 +12,7 @@
     <div class="mb-3">
       <app-button
         title="Enviar foto"
-        type="btn-warning"
+        type="btn-secondary btn-upload shadow"
         icon="bi-file-earmark-image"
         (click)="handleClick()"
       ></app-button>
@@ -21,7 +21,7 @@
   <div class="col">
     <app-button
       title="Tirar foto"
-      type="btn-primary"
+      type="btn-secondary btn-realtime shadow"
       icon="bi-camera"
       (click)="checkPermissions()"
     ></app-button>
@@ -31,20 +31,29 @@
 <div *ngIf="isTakingPhoto" class="webcam">
   <webcam
     [width]="350"
-    [style]="{ position: 'relative', left: '15%' }"
+    [style]="{ position: 'relative', left: '15%', alignSelf: 'center' }"
     [trigger]="$trigger"
     (imageCapture)="snapshot($event)"
   ></webcam>
-  <app-button
-    title="Capturar imagem"
-    type="btn-primary"
-    (click)="captureImage()"
-  ></app-button>
-  <app-button
-    title="Fechar"
-    (click)="onClickIsTakingPhoto()"
-    type="btn-link"
-  ></app-button>
+  <div class="webcam-actions">
+    <app-button
+      title="Capturar imagem"
+      type="btn-primary"
+      (click)="captureImage()"
+    ></app-button>
+    <app-button
+      title="Fechar"
+      (click)="closeWebcam()"
+      type="btn-link"
+    ></app-button>
+  </div>
 </div>
 
+<div *ngIf="hasError" class="alert alert-warning" role="alert">
+  {{errorMessage}}
+</div>
+
+<audio class="back-audio" *ngIf="showAudio" autoplay controls>
+  <source type="audio" src="{{ audio }}" type="audio/mpeg">
+</audio>
 <app-response *ngIf="response != ''" response="{{ response }}"></app-response>
