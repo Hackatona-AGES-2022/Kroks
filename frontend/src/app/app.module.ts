@@ -9,10 +9,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranscribeChoiceComponent } from './cards/transcribe-choice/transcribe-choice.component';
 import { AudioComponent } from './cards/audio/audio.component';
+<<<<<<< HEAD
 import { ImageComponent } from './cards/image/image.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ResponseComponent } from './response/response.component';
 import { WebcamModule } from 'ngx-webcam';
+=======
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+>>>>>>> ce989cffee9a0e2688cdf27055e3ca8a767a4588
 
 @NgModule({
   declarations: [
@@ -23,8 +27,12 @@ import { WebcamModule } from 'ngx-webcam';
     ButtonComponent,
     TranscribeChoiceComponent,
     AudioComponent,
+<<<<<<< HEAD
     ImageComponent,
     ResponseComponent,
+=======
+    NotFoundComponent,
+>>>>>>> ce989cffee9a0e2688cdf27055e3ca8a767a4588
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, WebcamModule],
   providers: [],
