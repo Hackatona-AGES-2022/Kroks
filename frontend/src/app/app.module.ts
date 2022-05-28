@@ -11,6 +11,7 @@ import { TranscribeChoiceComponent } from './cards/transcribe-choice/transcribe-
 import { AudioComponent } from './cards/audio/audio.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ButtonComponent } from './components/button/button.component';
+import { ImageComponent } from './cards/image/image.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,8 @@ import { ButtonComponent } from './components/button/button.component';
     TranscribeChoiceComponent,
     AudioComponent,
     NotFoundComponent,
+    ButtonComponent,
+    ImageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
