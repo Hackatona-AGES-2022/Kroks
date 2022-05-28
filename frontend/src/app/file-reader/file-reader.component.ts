@@ -17,7 +17,7 @@ export class FileReaderComponent implements OnInit {
   async onFileSend(event: any) {
     const file: File = event.target.files[0];
     console.log(file);
-    this.httpService.sendImage(file).subscribe((d) => console.log(d));
+    (await this.httpService.sendImage(file)).subscribe((d) => console.log(d));
     // console.log(file.type);
 
     // const fileReader = new FileReader();

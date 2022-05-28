@@ -1,7 +1,16 @@
 .text-result {
-    border-radius: 20px;
-    p {
-      margin: 0;
-      padding: 10px;
-    }
+}
+
+.space {
+  height: 1px;
+  margin: 10px 200px;
+}
+
+.response-field {
+  border-radius: 20px;
+  margin: 0px 50px;
+  p {
+    margin: 0;
+    padding: 10px;
   }
+}
