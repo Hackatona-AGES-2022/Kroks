@@ -5,7 +5,7 @@
       *ngIf="!sendAudio"
         title="Enviar arquivo"
         icon="bi-file-earmark-music"
-        type="btn-warning"
+        type="btn-secondary btn-upload shadow"
         (click)="handleClick()"
       ></app-button>
       
@@ -19,7 +19,7 @@
     <app-button
       title="Gravar"
       icon="bi-mic"
-      type="btn-success"
+      type="btn-secondary btn-realtime shadow"
       *ngIf="!isRecording"
       (click)="startStopRecording()"
     ></app-button>
@@ -40,7 +40,4 @@
   />
 </div>
 
-<app-response
-  *ngIf="text !== ''"
-  response="{{ text }}"
-></app-response>
+<app-response *ngIf="text !== ''" response="{{ text }}"></app-response>

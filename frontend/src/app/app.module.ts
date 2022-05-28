@@ -15,6 +15,7 @@ import { ResponseComponent } from './response/response.component';
 import { WebcamModule } from 'ngx-webcam';
 
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ImageComponent,
     ImageComponent,
     ResponseComponent,
-    
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, WebcamModule],
   providers: [],

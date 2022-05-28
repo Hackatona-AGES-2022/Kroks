@@ -13,7 +13,7 @@
       <app-button
       *ngIf="!sendImage"
         title="Enviar foto"
-        type="btn-warning"
+        type="btn-secondary btn-upload shadow"
         icon="bi-file-earmark-image"
         (click)="handleClick()"
       ></app-button>
@@ -28,7 +28,7 @@
     <app-button
       
       title="Tirar foto"
-      type="btn-primary"
+      type="btn-secondary btn-realtime shadow"
       icon="bi-camera"
       (click)="checkPermissions()"
     ></app-button>
