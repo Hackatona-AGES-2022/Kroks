@@ -7,6 +7,19 @@ Além, dessas facilidades que provemos, também salvamos dados de uso para pesqu
 
 ---
 
+Rodar Back end:
+```
+python -m kroks
+```
+
+Rodar Front end:
+```
+cd frontend
+npm install
+npm start
+```
+---
+
 ## Back End
 Neste projeto foi utlízado a linguagem de programação **python**, para a escrita do **back end**. Onde nela utilizamos de frameworks como *fast-api*, e bibliotecas como: *Urllib* e *Request*. 
 
