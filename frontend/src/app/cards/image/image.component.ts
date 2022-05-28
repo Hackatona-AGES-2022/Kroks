@@ -1,4 +1,3 @@
-import { ReadVarExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
@@ -44,7 +43,7 @@ export class ImageComponent implements OnInit {
 
   snapshot (event: WebcamImage) {
     this.imageFile = this.handleCapturedImage(event)
-    const reader = new FileReader()
+    this.http.sendImage(this.imageFile)
     this.isTakingPhoto = !this.isTakingPhoto
     this.isPhotoTook = !this.isPhotoTook
   }
