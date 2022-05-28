@@ -31,6 +31,7 @@ export class ImageComponent implements OnInit {
   }
 
   checkPermissions() {
+    this.hasError = false;
     navigator.mediaDevices
       .getUserMedia({
         video: {

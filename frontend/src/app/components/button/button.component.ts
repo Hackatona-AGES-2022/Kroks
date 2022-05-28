@@ -14,6 +14,9 @@ export class ButtonComponent implements OnInit {
 
   @Input('type')
   type!: string;
+
+  @Input('alt')
+  alt!: string;
   
   constructor() { }
 

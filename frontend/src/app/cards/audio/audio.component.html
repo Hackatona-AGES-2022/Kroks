@@ -1,3 +1,7 @@
+<div>
+  <h2>Transcrição de Áudio</h2>
+</div>
+
 <div class="row">
   <div class="col">
     <div class="mb-3">
@@ -6,6 +10,7 @@
         title="Enviar arquivo"
         icon="bi-file-earmark-music"
         type="btn-secondary btn-upload shadow"
+        alt="Enviar Arquivo de Áudio"
         (click)="handleClick()"
       ></app-button>
       
@@ -20,6 +25,7 @@
       title="Gravar"
       icon="bi-mic"
       type="btn-secondary btn-realtime shadow"
+      alt="Captação de Áudio em tempo real"
       *ngIf="!isRecording"
       (click)="startStopRecording()"
     ></app-button>
@@ -28,6 +34,7 @@
       icon="bi-mic-mute"
       type="btn-danger"
       *ngIf="isRecording"
+      alt="Interromper captação de Áudio em tempo real"
       (click)="startStopRecording()"
     ></app-button>
   </div>

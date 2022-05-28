@@ -1,3 +1,6 @@
+<div>
+  <h2>Transcrição de Imagem</h2>
+</div>
 <div *ngIf="!isTakingPhoto" class="row">
   <div class="col">
     <div class="mb-3 hiden">
@@ -15,6 +18,7 @@
         title="Enviar foto"
         type="btn-secondary btn-upload shadow"
         icon="bi-file-earmark-image"
+        alt="Envio de foto"
         (click)="handleClick()"
       ></app-button>
       
@@ -30,6 +34,7 @@
       title="Tirar foto"
       type="btn-secondary btn-realtime shadow"
       icon="bi-camera"
+      alt="Função de captura de foto através da câmera do dispositivo"
       (click)="checkPermissions()"
     ></app-button>
   </div>
@@ -48,6 +53,7 @@
       title="Capturar imagem"
       type="btn-primary"
       (click)="captureImage()"
+      alt="Captura de foto instantânea"
     ></app-button>
     <button *ngIf="sendBigImage" class="btn btn-primary" type="button" disabled>
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -57,6 +63,7 @@
       title="Fechar"
       (click)="closeWebcam()"
       type="btn-link"
+      alt="Fechar funcionalidade e retornar ao menu de seleção de imagens"
     ></app-button>
   </div>
 </div>
