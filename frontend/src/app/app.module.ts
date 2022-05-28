@@ -9,6 +9,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranscribeChoiceComponent } from './cards/transcribe-choice/transcribe-choice.component';
 import { AudioComponent } from './cards/audio/audio.component';
+import { ImageComponent } from './cards/image/image.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -16,8 +18,10 @@ import { AudioComponent } from './cards/audio/audio.component';
     FileReaderComponent,
     HomeComponent,
     HeaderComponent,
+    ButtonComponent,
     TranscribeChoiceComponent,
     AudioComponent,
+    ImageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

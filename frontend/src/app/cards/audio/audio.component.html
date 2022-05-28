@@ -5,21 +5,7 @@
     </div>
   </div>
   <div class="col">
-    <button
-      *ngIf="!isRecording"
-      class="btn btn-success"
-      (click)="startStopRecording()"
-    >
-      <i class="bi bi-mic"></i>
-      Gravar
-    </button>
-    <button
-      *ngIf="isRecording"
-      class="btn btn-danger"
-      (click)="startStopRecording()"
-    >
-      <i class="bi bi-mic-mute"></i>
-      Gravar
-    </button>
+    <app-button title="Gravar" icon="bi-mic" type="btn-success" *ngIf="!isRecording" (click)="startStopRecording()"></app-button>
+    <app-button title="Parar de Gravar" icon="bi-mic-mute" type="btn-danger" *ngIf="isRecording" (click)="startStopRecording()"></app-button>
   </div>
 </div>
