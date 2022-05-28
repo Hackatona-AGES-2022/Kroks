@@ -1,6 +1,8 @@
+import { ReadVarExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { HttpService } from 'src/app/http.service';
 
 @Component({
   selector: 'app-image',
@@ -8,15 +10,15 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./image.component.scss'],
 })
 export class ImageComponent implements OnInit {
-<<<<<<< HEAD
-  constructor() {}
-
-  ngOnInit(): void {}
-=======
-  stream: any = null;
+  isTakingPhoto: boolean = false;
+  isPhotoTook: boolean = false;
   trigger: Subject<void> = new Subject<void>();
+  stream: any = null;
+  imageFile: any = null;
 
-  constructor() { }
+  constructor(private http: HttpService) {
+    
+  }
 
   ngOnInit(): void {
   }
@@ -28,13 +30,12 @@ export class ImageComponent implements OnInit {
   checkPermissions() {
     navigator.mediaDevices.getUserMedia({
       video: {
-        width: 500,
-        height: 500
+        width: {min: 200},
+        height: {min: 200}
       }
     }).then((res) => {
       this.stream = res;
-    }).catch(err => {
-      
+      this.isTakingPhoto = !this.isTakingPhoto
     })
   }
 
@@ -43,7 +44,21 @@ export class ImageComponent implements OnInit {
   }
 
   snapshot (event: WebcamImage) {
-    console.log(event);
+    this.imageFile = this.handleCapturedImage(event)
+    const reader = new FileReader()
+    this.isTakingPhoto = !this.isTakingPhoto
+    this.isPhotoTook = !this.isPhotoTook
   }
->>>>>>> 47bf00b6110f5889dd3b44a8d242572647307d66
+
+  handleCapturedImage(webcamImage: WebcamImage): File  {
+    const arr = webcamImage.imageAsDataUrl.split(",");
+    const bstr = atob(arr[1]);
+    let n = bstr.length;
+    const u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    const file: File = new File([u8arr], "taken-photo", { type: "image/jpeg" })
+    return file
+  }
 }

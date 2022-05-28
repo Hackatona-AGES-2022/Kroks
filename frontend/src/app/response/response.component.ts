@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-response',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./response.component.scss']
 })
 export class ResponseComponent implements OnInit {
+  @Input('response')
+  response!: string;
 
   constructor() { }
 
