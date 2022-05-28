@@ -1,4 +1,5 @@
 <div class="row">
+<<<<<<< HEAD
   <div class="col">
     <div class="mb-3">
       <input class="form-control" type="file" id="formFile" />
@@ -12,3 +13,21 @@
     ></app-button>
   </div>
 </div>
+=======
+    <div class="col">
+      <div class="mb-3">
+        <input class="form-control" type="file" accept="image/*" id="formFile" />
+      </div>
+    </div>
+    <div class="col">
+      <app-button title="Tirar foto" type="btn-primary" icon="bi-camera" (click)="checkPermissions()"></app-button>
+    </div>
+</div>
+
+<div *ngIf="stream">
+  <webcam [trigger]="$trigger" (imageCapture)="snapshot($event)"></webcam>
+  <app-button title="Capturar imagem" type="btn-primary" (click) = "captureImage()"></app-button>
+</div>
+
+
+>>>>>>> 47bf00b6110f5889dd3b44a8d242572647307d66

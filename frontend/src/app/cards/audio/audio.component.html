@@ -5,10 +5,16 @@
     </div>
   </div>
   <div class="col">
+<<<<<<< HEAD
     <app-button
       title="Gravar"
       icon="bi-mic"
       type="btn-success"
+=======
+    <app-button title="Gravar" icon="bi-mic" type="btn-success" *ngIf="!isRecording" (click)="startStopRecording()"></app-button>
+    <app-button title="Parar de Gravar" icon="bi-mic-mute" type="btn-danger" *ngIf="isRecording" (click)="startStopRecording()"></app-button>
+    <button
+>>>>>>> 47bf00b6110f5889dd3b44a8d242572647307d66
       *ngIf="!isRecording"
       (click)="startStopRecording()"
     ></app-button>
@@ -18,11 +24,26 @@
       type="btn-danger"
       *ngIf="isRecording"
       (click)="startStopRecording()"
+<<<<<<< HEAD
     ></app-button>
   </div>
 </div>
 <div *ngIf="text !== ''" class="row d-flex justify-content-center">
   <div class="text-result bg-dark text-light">
     <p>{{ text }}</p>
+=======
+    >
+      <i class="bi bi-mic-mute"></i>
+      Parar de gravar
+    </button>
+<<<<<<< HEAD
+>>>>>>> ce989cffee9a0e2688cdf27055e3ca8a767a4588
+=======
+=======
+    <app-button title="Gravar" icon="bi-mic" type="btn-success" *ngIf="!isRecording" (click)="startStopRecording()"></app-button>
+    <app-button title="Parar de Gravar" icon="bi-mic-mute" type="btn-danger" *ngIf="isRecording" (click)="startStopRecording()"></app-button>
+>>>>>>> 961325c1a4a29971fe17fa979b9e1e889bdaee57
+>>>>>>> 27a90e600ceffa3a38caa4a88d4651a20f7d5067
+>>>>>>> 47bf00b6110f5889dd3b44a8d242572647307d66
   </div>
 </div>
