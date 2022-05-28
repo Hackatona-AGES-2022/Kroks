@@ -11,14 +11,21 @@
   border-radius: 50px;
 }
 
-.bg-half-dark {
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+  
+  min-height: 70vh;
 }
 
 .max-size {
   height: 80vh;
 }
 
-.texto {
+.text {
+  background-color: antiquewhite;
   width: 100%;
   max-width: 600px;
 }
