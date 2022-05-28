@@ -33,6 +33,6 @@
     (change)="handleFile($event)"
   />
 </div>
-<div class="row" *ngIf="text !== ''">
-  <p>{{ text }}</p>
-</div>
+
+<app-response class="row" *ngIf="text !== ''" response="{{text}}"></app-response>
+

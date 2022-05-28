@@ -14,6 +14,7 @@ export class ImageComponent implements OnInit {
   trigger: Subject<void> = new Subject<void>();
   stream: any = null;
   imageFile: any = null;
+  response: any = null;
 
   constructor(private http: HttpService) {
     
@@ -41,9 +42,11 @@ export class ImageComponent implements OnInit {
     this.trigger.next();
   }
 
-  snapshot (event: WebcamImage) {
+  async snapshot (event: WebcamImage) {
     this.imageFile = this.handleCapturedImage(event)
-    this.http.sendImage(this.imageFile)
+    await this.http.sendImage(this.imageFile).subscribe((value:Object) => {
+      this.response = value
+    })
     this.isTakingPhoto = !this.isTakingPhoto
     this.isPhotoTook = !this.isPhotoTook
   }
