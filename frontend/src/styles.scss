@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+  --darker-shade: #164F5C;
+  --primary-color: #2FA7C2;
+  --terciary-color: #35BDDB;
+  --lighter-shade: #2CE8A3;
+}
+
 .btn:disabled {
   outline: none;
 }

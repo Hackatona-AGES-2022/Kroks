@@ -10,7 +10,6 @@ import { HttpService } from 'src/app/http.service';
 })
 export class ImageComponent implements OnInit {
   isTakingPhoto: boolean = false;
-  isPhotoTook: boolean = false;
   trigger: Subject<void> = new Subject<void>();
   stream: any = null;
   imageFile: any = null;
@@ -23,12 +22,6 @@ export class ImageComponent implements OnInit {
 
   get $trigger(): Observable<void> {
     return this.trigger.asObservable();
-  }
-
-  onClickIsTakingPhoto() {
-    this.isTakingPhoto = false;
-    this.stream = null;
-    this.response = '';
   }
 
   checkPermissions() {
@@ -59,7 +52,6 @@ export class ImageComponent implements OnInit {
       this.response = value.description.captions[0].text;
     });
     this.isTakingPhoto = true;
-    this.isPhotoTook = true;
   }
 
   handleCapturedImage(webcamImage: WebcamImage): File {
@@ -80,9 +72,14 @@ export class ImageComponent implements OnInit {
 
   handleFile(event: any) {
     const file: File = event.target.files[0];
-    console.log(file.type);
     this.http.sendImage(file).subscribe((d: any) => {
       this.response = d.description.captions[0].text;
     });
+  }
+
+  closeWebcam() {
+    this.isTakingPhoto = false;
+    this.stream = null;
+    this.response = '';
   }
 }
