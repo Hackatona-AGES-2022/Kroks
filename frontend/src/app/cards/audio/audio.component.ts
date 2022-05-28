@@ -12,6 +12,8 @@ declare var webkitSpeechRecognition: any;
 export class AudioComponent implements OnInit {
   @Output('textChange') textChange = new EventEmitter<string>();
 
+  sendAudio: boolean =false;
+
   isRecording = false;
 
   constructor(public service: VoiceService, private http: HttpService) {}
@@ -74,10 +76,13 @@ export class AudioComponent implements OnInit {
 
   handleFile(event: any) {
     const file: File = event.target.files[0];
-    console.log(file.type);
+
+    this.sendAudio = true;
+    
     this.text = '';
     this.http.sendAudio(file).subscribe((d: any) => {
       this.text = d;
+      this.sendAudio = false;
     });
   }
 }

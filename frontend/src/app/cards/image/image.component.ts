@@ -19,6 +19,8 @@ export class ImageComponent implements OnInit {
   showAudio: boolean = false;
   hasError: boolean = false;
   errorMessage: string = '';
+  sendImage: boolean = false;
+  sendBigImage: boolean = false;
 
   constructor(private http: HttpService) {}
 
@@ -58,12 +60,13 @@ export class ImageComponent implements OnInit {
     this.imageFile = this.handleCapturedImage(event);
     this.showAudio = false
     this.response = '';
+    this.sendBigImage = true;
   
     this.http.sendImage(this.imageFile).subscribe((d: any) => {
-      
       this.response = d.text.data;
       this.audio = d.audio;
       this.showAudio = true;
+      this.sendBigImage = false;
     });
     this.isTakingPhoto = true;
   }
@@ -87,11 +90,13 @@ export class ImageComponent implements OnInit {
   handleFile(event: any) {
     const file: File = event.target.files[0];
     this.showAudio = false
+    this.sendImage =false;
     this.response = '';
     this.http.sendImage(file).subscribe((d: any) => {
       this.response = d.text.data;
       this.audio = d.audio;
       this.showAudio = true;
+      this.sendImage = false;
     });
   }
 

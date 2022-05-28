@@ -11,15 +11,22 @@
     </div>
     <div class="mb-3">
       <app-button
+      *ngIf="!sendImage"
         title="Enviar foto"
         type="btn-warning"
         icon="bi-file-earmark-image"
         (click)="handleClick()"
       ></app-button>
+      
+      <button *ngIf="sendImage" class="btn btn-warning" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Carregando...
+      </button>
     </div>
   </div>
   <div class="col">
     <app-button
+      
       title="Tirar foto"
       type="btn-primary"
       icon="bi-camera"
@@ -37,10 +44,15 @@
   ></webcam>
   <div class="webcam-actions">
     <app-button
+    *ngIf="!sendBigImage"
       title="Capturar imagem"
       type="btn-primary"
       (click)="captureImage()"
     ></app-button>
+    <button *ngIf="sendBigImage" class="btn btn-primary" type="button" disabled>
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+      Carregando...
+    </button>
     <app-button
       title="Fechar"
       (click)="closeWebcam()"

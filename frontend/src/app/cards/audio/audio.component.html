@@ -2,11 +2,17 @@
   <div class="col">
     <div class="mb-3">
       <app-button
+      *ngIf="!sendAudio"
         title="Enviar arquivo"
         icon="bi-file-earmark-music"
         type="btn-warning"
         (click)="handleClick()"
       ></app-button>
+      
+      <button *ngIf="sendAudio" class="btn btn-warning" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Carregando...
+      </button>
     </div>
   </div>
   <div class="col">
