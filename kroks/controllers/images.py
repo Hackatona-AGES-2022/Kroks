@@ -1,9 +1,11 @@
+from fastapi import UploadFile
 import requests
 
+from .statistics import insert_tag, insert_text
 from ..settings import SETTINGS
 
 
-def get_image_description(file: bytes, content_type: str):
+async def get_image_description(file: bytes, content_type: str, region: str):
     res = requests.post(
         SETTINGS.image_url, 
         data=file,
@@ -12,7 +14,13 @@ def get_image_description(file: bytes, content_type: str):
             "Content-Type": content_type
         }
     )
+    description = res.json().get("description")
+    
+    tags = description.get('tags')
+    for tag in tags:
+        await insert_tag(tag, region)
 
-    print(res.json())
+    text = description.get('captions')[0].get('text')
+    await insert_text(text, region)
 
-    return res.json()
+    return {'data': text}
