@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranscribeChoiceComponent } from './cards/transcribe-choice/transcribe-choice.component';
 import { AudioComponent } from './cards/audio/audio.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AudioComponent } from './cards/audio/audio.component';
     HeaderComponent,
     TranscribeChoiceComponent,
     AudioComponent,
+    NotFoundComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
