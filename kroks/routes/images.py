@@ -1,11 +1,12 @@
-from fastapi import APIRouter, File
+from re import I
+from fastapi import APIRouter, Body
+
+from ..controllers.images import get_image_description
+
 
 router = APIRouter()
 
-@router.post('/images')
-def describe_images(file: bytes = File()):
-    return {'description': 'a group of zebras and a giraffe standing on a dirt road'}
 
 @router.post('/image')
-def describe_image(file: bytes = File()):
-    pass
+def describe_image(file: bytes = Body()):
+    return get_image_description(file)
