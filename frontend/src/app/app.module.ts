@@ -9,23 +9,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranscribeChoiceComponent } from './cards/transcribe-choice/transcribe-choice.component';
 import { AudioComponent } from './cards/audio/audio.component';
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import { ImageComponent } from './cards/image/image.component';
 import { ButtonComponent } from './components/button/button.component';
 import { ResponseComponent } from './response/response.component';
 import { WebcamModule } from 'ngx-webcam';
-=======
+
 import { NotFoundComponent } from './pages/not-found/not-found.component';
->>>>>>> ce989cffee9a0e2688cdf27055e3ca8a767a4588
-=======
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ButtonComponent } from './components/button/button.component';
-<<<<<<< HEAD
-import { ImageComponent } from './cards/image/image.component';
-=======
->>>>>>> 27a90e600ceffa3a38caa4a88d4651a20f7d5067
->>>>>>> 47bf00b6110f5889dd3b44a8d242572647307d66
 
 @NgModule({
   declarations: [
@@ -36,14 +26,11 @@ import { ImageComponent } from './cards/image/image.component';
     ButtonComponent,
     TranscribeChoiceComponent,
     AudioComponent,
-<<<<<<< HEAD
     NotFoundComponent,
     ButtonComponent,
     ImageComponent,
-=======
     ImageComponent,
     ResponseComponent,
->>>>>>> 47bf00b6110f5889dd3b44a8d242572647307d66
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, WebcamModule],
   providers: [],

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { HttpService } from 'src/app/http.service';
 import { VoiceService } from 'src/app/services/voice.service';
 
 declare var webkitSpeechRecognition: any;
@@ -13,7 +14,7 @@ export class AudioComponent implements OnInit {
 
   isRecording = false;
 
-  constructor(public service: VoiceService) {}
+  constructor(public service: VoiceService, private http: HttpService) {}
 
   ngOnInit(): void {
     this.recognition.interimResults = true;
@@ -64,5 +65,15 @@ export class AudioComponent implements OnInit {
     } else {
       this.stop();
     }
+  }
+
+  handleClick() {
+    document.getElementById('file-input')?.click();
+  }
+
+  handleFile(event: any) {
+    const file: File = event.target.files[0];
+    console.log(file.type);
+    this.http.sendAudio(file);
   }
 }
