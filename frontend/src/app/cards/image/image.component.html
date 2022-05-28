@@ -48,6 +48,11 @@
     ></app-button>
   </div>
 </div>
+
+<div *ngIf="hasError" class="alert alert-warning" role="alert">
+  {{errorMessage}}
+</div>
+
 <audio class="back-audio" *ngIf="showAudio" autoplay controls>
   <source type="audio" src="{{ audio }}" type="audio/mpeg">
 </audio>

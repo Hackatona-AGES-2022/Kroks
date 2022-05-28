@@ -17,6 +17,8 @@ export class ImageComponent implements OnInit {
   webcamActive: boolean = false;
   audio?: string
   showAudio: boolean = false;
+  hasError: boolean = false;
+  errorMessage: string = '';
 
   constructor(private http: HttpService) {}
 
@@ -38,6 +40,11 @@ export class ImageComponent implements OnInit {
         this.stream = res;
         this.isTakingPhoto = !this.isTakingPhoto;
         this.response = '';
+      }).catch(err => {
+          if(err.message === 'Permission denied') {
+            this.errorMessage = "Você não permitiu a utilização da câmera. Tente novamente."
+          }
+          this.hasError = true;
       });
 
     this.captureImage();
@@ -82,8 +89,6 @@ export class ImageComponent implements OnInit {
     this.showAudio = false
     this.response = '';
     this.http.sendImage(file).subscribe((d: any) => {
-      // this.response = d.description.captions[0].text;
-      console.log(d.audio)
       this.response = d.text.data;
       this.audio = d.audio;
       this.showAudio = true;
