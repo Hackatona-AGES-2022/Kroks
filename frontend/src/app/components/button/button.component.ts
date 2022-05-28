@@ -12,14 +12,11 @@ export class ButtonComponent implements OnInit {
   @Input('icon')
   icon!: string;
 
-  clicked: boolean = false;
+  @Input('type')
+  type!: string;
   
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  onClick() {
-    this.clicked = !this.clicked
   }
 }

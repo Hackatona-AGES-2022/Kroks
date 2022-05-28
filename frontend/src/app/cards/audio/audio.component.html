@@ -5,6 +5,7 @@
     </div>
   </div>
   <div class="col">
+<<<<<<< HEAD
     <button
       *ngIf="!isRecording"
       class="btn btn-success"
@@ -21,5 +22,9 @@
       <i class="bi bi-mic-mute"></i>
       Parar de gravar
     </button>
+=======
+    <app-button title="Gravar" icon="bi-mic" type="btn-success" *ngIf="!isRecording" (click)="startStopRecording()"></app-button>
+    <app-button title="Parar de Gravar" icon="bi-mic-mute" type="btn-danger" *ngIf="isRecording" (click)="startStopRecording()"></app-button>
+>>>>>>> 961325c1a4a29971fe17fa979b9e1e889bdaee57
   </div>
 </div>
