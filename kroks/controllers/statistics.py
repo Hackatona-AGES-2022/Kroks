@@ -8,6 +8,7 @@ db = client.statistics
 
 
 async def insert_tag(tag: str, region: str):
+    print(tag)
     await db.tags.insert_one({"name": tag, "region": region})
 
 

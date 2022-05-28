@@ -16,7 +16,7 @@ class Input(BaseModel):
     region: str
 
 
-@router.post('/speech-to-text')
+@router.post('/audio')
 async def speech_to_text(file: bytes = Body(), region: Optional[str] = Header(None)):
     return await generate_text_from_speech(file, region)
 

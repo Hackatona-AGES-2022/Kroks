@@ -18,4 +18,4 @@ async def audio_image(file: bytes = Body(), content_type_aux: Optional[str] = He
     text = await get_image_description(file, content_type_aux, region)
     audio = await generate_speech_from_text(text.get('data'), region)
     file_name = await save_audio(audio)
-    return RedirectResponse(f'http://localhost:8000/static/mp3/{file_name}')
+    return {'audio': f'http://localhost:8000/static/mp3/{file_name}', 'text': text}
