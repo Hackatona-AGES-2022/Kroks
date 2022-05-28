@@ -15,6 +15,8 @@ export class ImageComponent implements OnInit {
   imageFile: any = null;
   response: string = '';
   webcamActive: boolean = false;
+  audio?: string
+  showAudio: boolean = false;
 
   constructor(private http: HttpService) {}
 
@@ -47,9 +49,14 @@ export class ImageComponent implements OnInit {
 
   snapshot(event: WebcamImage) {
     this.imageFile = this.handleCapturedImage(event);
-    this.http.sendImage(this.imageFile).subscribe((value: any) => {
-      console.log(value);
-      this.response = value.description.captions[0].text;
+    this.showAudio = false
+    this.response = '';
+  
+    this.http.sendImage(this.imageFile).subscribe((d: any) => {
+      
+      this.response = d.text.data;
+      this.audio = d.audio;
+      this.showAudio = true;
     });
     this.isTakingPhoto = true;
   }
@@ -72,8 +79,14 @@ export class ImageComponent implements OnInit {
 
   handleFile(event: any) {
     const file: File = event.target.files[0];
+    this.showAudio = false
+    this.response = '';
     this.http.sendImage(file).subscribe((d: any) => {
-      this.response = d.description.captions[0].text;
+      // this.response = d.description.captions[0].text;
+      console.log(d.audio)
+      this.response = d.text.data;
+      this.audio = d.audio;
+      this.showAudio = true;
     });
   }
 

@@ -36,6 +36,7 @@ export class AudioComponent implements OnInit {
   tempWords = '';
 
   start() {
+    this.text = '';
     this.isStoppedSpeechRecog = false;
     this.recognition.start();
     this.recognition.addEventListener('end', (condition: any) => {
@@ -56,7 +57,6 @@ export class AudioComponent implements OnInit {
   wordConcat() {
     this.text = this.text + ' ' + this.tempWords + '.';
     this.tempWords = '';
-    this.textChange.emit(this.text);
   }
 
   startStopRecording() {
@@ -75,6 +75,9 @@ export class AudioComponent implements OnInit {
   handleFile(event: any) {
     const file: File = event.target.files[0];
     console.log(file.type);
-    this.http.sendAudio(file).subscribe((d) => console.log(d));
+    this.text = '';
+    this.http.sendAudio(file).subscribe((d: any) => {
+      this.text = d;
+    });
   }
 }
