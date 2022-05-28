@@ -1,20 +1,50 @@
-<div *ngIf="!isTakingPhoto && !isPhotoTook" class="row">
-    <div class="col">
-      <div class="mb-3">
-        <input class="form-control" type="file" accept="image/png,image/jpg,image/jpeg" id="formFile" />
-      </div>
+<div *ngIf="!isTakingPhoto" class="row">
+  <div class="col">
+    <div class="mb-3 hiden">
+      <input
+        class="form-control"
+        type="file"
+        accept="image/png,image/jpg,image/jpeg"
+        id="file-input"
+        (change)="handleFile($event)"
+      />
     </div>
-    <div class="col">
-      <app-button title="Tirar foto" type="btn-primary" icon="bi-camera" (click)="checkPermissions()"></app-button>
+    <div class="mb-3">
+      <app-button
+        title="Enviar foto"
+        type="btn-warning"
+        icon="bi-file-earmark-image"
+        (click)="handleClick()"
+      ></app-button>
     </div>
+  </div>
+  <div class="col">
+    <app-button
+      title="Tirar foto"
+      type="btn-primary"
+      icon="bi-camera"
+      (click)="checkPermissions()"
+    ></app-button>
+  </div>
 </div>
 
-<div>
-  <webcam [width]="300" [trigger]="$trigger" (imageCapture)="snapshot($event)"></webcam>
-  <app-button title="Capturar imagem" type="btn-primary"  (click) = "captureImage()"></app-button>
+<div *ngIf="isTakingPhoto" class="webcam">
+  <webcam
+    [width]="350"
+    [style]="{ position: 'relative', left: '15%' }"
+    [trigger]="$trigger"
+    (imageCapture)="snapshot($event)"
+  ></webcam>
+  <app-button
+    title="Capturar imagem"
+    type="btn-primary"
+    (click)="captureImage()"
+  ></app-button>
+  <app-button
+    title="Fechar"
+    (click)="onClickIsTakingPhoto()"
+    type="btn-link"
+  ></app-button>
 </div>
 
-
-
-<app-response *ngIf="isPhotoTook" response="{{response}}"></app-response>
-
+<app-response *ngIf="response != ''" response="{{ response }}"></app-response>

@@ -14,11 +14,10 @@ export class ImageComponent implements OnInit {
   trigger: Subject<void> = new Subject<void>();
   stream: any = null;
   imageFile: any = null;
-  response: any = null;
+  response: string = '';
+  webcamActive: boolean = false;
 
-  constructor(private http: HttpService) {
-    
-  }
+  constructor(private http: HttpService) {}
 
   ngOnInit(): void {}
 
@@ -26,40 +25,64 @@ export class ImageComponent implements OnInit {
     return this.trigger.asObservable();
   }
 
+  onClickIsTakingPhoto() {
+    this.isTakingPhoto = false;
+    this.stream = null;
+    this.response = '';
+  }
+
   checkPermissions() {
-    navigator.mediaDevices.getUserMedia({
-      video: {
-        width: {min: 200},
-        height: {min: 200}
-      }
-    }).then((res) => {
-      this.stream = res;
-      this.isTakingPhoto = !this.isTakingPhoto
-    })
+    navigator.mediaDevices
+      .getUserMedia({
+        video: {
+          width: { min: 200 },
+          height: { min: 200 },
+        },
+      })
+      .then((res) => {
+        this.stream = res;
+        this.isTakingPhoto = !this.isTakingPhoto;
+        this.response = '';
+      });
+
+    this.captureImage();
   }
 
   captureImage() {
     this.trigger.next();
   }
 
-  async snapshot (event: WebcamImage) {
-    this.imageFile = this.handleCapturedImage(event)
-    await this.http.sendImage(this.imageFile).subscribe((value:Object) => {
-      this.response = value
-    })
-    this.isTakingPhoto = !this.isTakingPhoto
-    this.isPhotoTook = !this.isPhotoTook
+  snapshot(event: WebcamImage) {
+    this.imageFile = this.handleCapturedImage(event);
+    this.http.sendImage(this.imageFile).subscribe((value: any) => {
+      console.log(value);
+      this.response = value.description.captions[0].text;
+    });
+    this.isTakingPhoto = true;
+    this.isPhotoTook = true;
   }
 
-  handleCapturedImage(webcamImage: WebcamImage): File  {
-    const arr = webcamImage.imageAsDataUrl.split(",");
+  handleCapturedImage(webcamImage: WebcamImage): File {
+    const arr = webcamImage.imageAsDataUrl.split(',');
     const bstr = atob(arr[1]);
     let n = bstr.length;
     const u8arr = new Uint8Array(n);
     while (n--) {
       u8arr[n] = bstr.charCodeAt(n);
     }
-    const file: File = new File([u8arr], "taken-photo", { type: "image/jpeg" })
-    return file
+    const file: File = new File([u8arr], 'taken-photo', { type: 'image/jpeg' });
+    return file;
+  }
+
+  handleClick() {
+    document.getElementById('file-input')?.click();
+  }
+
+  handleFile(event: any) {
+    const file: File = event.target.files[0];
+    console.log(file.type);
+    this.http.sendImage(file).subscribe((d: any) => {
+      this.response = d.description.captions[0].text;
+    });
   }
 }
