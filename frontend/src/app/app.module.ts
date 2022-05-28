@@ -29,6 +29,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
     ImageComponent,
     ImageComponent,
     ResponseComponent,
+    
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, WebcamModule],
   providers: [],
